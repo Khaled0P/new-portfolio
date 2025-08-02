@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { useMediaQuery } from 'react-responsive';
 import { Room } from './Optimized-room';
 import HeroLights from './HeroLights';
+import Particles from './Particles';
 
 const HeroExperience = () => {
   const isTablet = useMediaQuery({ query: '(max-width: 1024px)' });
@@ -18,7 +19,7 @@ const HeroExperience = () => {
         maxPolarAngle={Math.PI / 2}
       />
       <HeroLights />
-
+      <Particles count={100} />
        {/* eslint-disable-next-line react/no-unknown-property */}
       <group scale={isMobile ? 0.7 : 1} position={[0, -3.5 ,0]} rotation={[0, -Math.PI / 4, 0]}>
         <Room />

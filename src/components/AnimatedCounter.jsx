@@ -10,7 +10,7 @@ const AnimatedCounter = () => {
             key={item.label}
           >
             <div className="counter-number text-white text-5xl font-bold mb-2">
-                <CountUp suffix={item.suffix} end={item.value} />
+                <CountUp suffix={item.suffix} end={item.value} enableScrollSpy={true} />
             </div>
             <div className='text-white-50 text-lg'>{item.label}</div>
           </div>

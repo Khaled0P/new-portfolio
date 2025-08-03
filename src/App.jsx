@@ -1,13 +1,16 @@
-import Hero from "./sections/Hero"
-import ShowcaseSection from "./sections/ShowcaseSection"
+import Hero from './sections/Hero';
+import NavBar from './sections/NavBar';
+import ShowcaseSection from './sections/ShowcaseSection';
 
 const App = () => {
   return (
-    <main className="App">
-    <Hero />
-    <ShowcaseSection />
-  </main>
-  )
-}
+    <>
+      <NavBar />
+      <Hero />
+      <ShowcaseSection />
+    </>
+  );
+};
 
-export default App
+export default App;
+

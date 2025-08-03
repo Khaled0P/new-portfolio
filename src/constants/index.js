@@ -29,10 +29,10 @@ const words = [
 ];
 
 const counterItems = [
-  { value: 15, suffix: "+", label: "Years of Experience" },
-  { value: 200, suffix: "+", label: "Satisfied Clients" },
-  { value: 108, suffix: "+", label: "Completed Projects" },
-  { value: 90, suffix: "%", label: "Client Retention Rate" },
+  { value: 2, suffix: "+", label: "Years of Experience" },
+  { value: 30, suffix: "+", label: "Projects Delivered" },
+  { value: 650, suffix: "+", label: "Code Commits" },
+  { value: 200, suffix: "+", label: "Code Reviews Performed" },
 ];
 
 const logoIconsList = [

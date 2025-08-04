@@ -53,13 +53,20 @@ const ShowcaseSection = () => {
             </div>
             <div className="text-content">
               <h2>
-                On-Deman Rides Made Simple with a Powerful, User-Friendly App
-                called Ryde
+                Streamlining Education: Task Flow Empowers Students and
+                Institutions with Unified Academic Management.
               </h2>
               <p className="text-white-50 md:text-xl">
                 {' '}
-                an app built with react native, expo and tailwind for a fast and
-                user Friendly experience{' '}
+                Led the frontend development of Task Flow, a large-scale SaaS
+                platform for academic operations in schools and universities.
+                Architected a scalable, SSR-optimized frontend using the MERN
+                stack with Next.js, Redux Toolkit, RTK Query, and Tailwind CSS.
+                Designed dynamic dashboards and role-based interfaces (admin,
+                teacher, student, super admin), built reusable components like
+                tables, modals, and assignment flows, and collaborated closely
+                with backend teams to ensure performance, maintainability, and
+                seamless API integration.{' '}
               </p>
             </div>
           </div>
@@ -72,13 +79,30 @@ const ShowcaseSection = () => {
                   alt="Library management platform"
                 />
               </div>
-              <h2>Library management platform</h2>
+              <h2>
+                Vitori Sales-stream: Headless Shopify Integration with
+                Full-Stack Custom Features
+              </h2>
+              <p className="text-white-50 md:text-xl">
+                Contributed to Vitori Sales-stream by building full-stack
+                features from API development to frontend UI using Next.js and
+                React. Originally designed as a headless Shopify store, and
+                included an embedded Shopify app
+              </p>
             </div>
             <div className="project" ref={project3Ref}>
               <div className="image-wrapper bg-[#ffe7eb]">
                 <img src="/images/project3.png" alt="YC Directory" />
               </div>
-              <h2>YC Directory - A Startup Showcase App</h2>
+              <h2>
+                Hola Mexico: Custom Shopify Theme Built for Performance and
+                Flexibility
+              </h2>
+              <p className="text-white-50 md:text-xl">
+                Built the entire store solo using a custom Shopify theme based
+                on Dawn. Focused on performance, modular Liquid sections, and
+                seamless integration of third-party apps.
+              </p>
             </div>
           </div>
         </div>

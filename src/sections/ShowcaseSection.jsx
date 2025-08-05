@@ -83,12 +83,6 @@ const ShowcaseSection = () => {
                 Vitori Sales-stream: Headless Shopify Integration with
                 Full-Stack Custom Features
               </h2>
-              <p className="text-white-50 md:text-xl">
-                Contributed to Vitori Sales-stream by building full-stack
-                features from API development to frontend UI using Next.js and
-                React. Originally designed as a headless Shopify store, and
-                included an embedded Shopify app
-              </p>
             </div>
             <div className="project" ref={project3Ref}>
               <div className="image-wrapper bg-[#ffe7eb]">
@@ -98,11 +92,6 @@ const ShowcaseSection = () => {
                 Hola Mexico: Custom Shopify Theme Built for Performance and
                 Flexibility
               </h2>
-              <p className="text-white-50 md:text-xl">
-                Built the entire store solo using a custom Shopify theme based
-                on Dawn. Focused on performance, modular Liquid sections, and
-                seamless integration of third-party apps.
-              </p>
             </div>
           </div>
         </div>

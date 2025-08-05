@@ -253,6 +253,19 @@ section {
     @apply md:size-20 size-10 flex-none rounded-full flex justify-center items-center md:-translate-y-7 border border-black-50 bg-black-100;
   }
 
+  .timeline-logo img {
+    @apply rounded-full max-w-[50px];
+  }
+
+  .timeline-logo img:nth-child(1) {
+    background: #2980b9;
+    background: linear-gradient(
+      220deg,
+      rgb(41 128 185 / 100%) 0%,
+      rgb(0 0 0 / 100%) 100%
+    );
+  }
+
   .exp-card-wrapper {
     @apply flex flex-col-reverse xl:flex-row xl:gap-20 gap-10 justify-between;
   }
@@ -274,7 +287,7 @@ section {
   }
 
   .tech-grid {
-    @apply grid xl:grid-cols-5 md:grid-cols-3 grid-cols-1 xl:gap-16 md:gap-10 gap-5 mt-16;
+    @apply grid xl:grid-cols-4 md:grid-cols-3 grid-cols-1 xl:gap-16 md:gap-10 gap-5 mt-16 mx-auto max-w-[1400px];
   }
 
   .tech-icon-wrapper {
@@ -379,10 +392,10 @@ section {
   background: linear-gradient(
     0deg,
     rgb(69 222 196 / 0%) 0%,
-    #62e0ff 25%,
-    #52aeff 37.51%,
-    #fd5c79 62.83%,
-    #6d45ce 92.91%
+    #c7144a 25%,
+    #a1190b 37.51%,
+    #fff 62.83%,
+    #1d4ac1 92.91%
   );
 }
 
@@ -419,7 +432,7 @@ section {
   height: 100%;
   position: absolute;
   overflow: hidden;
-  animation: marquee 60s linear infinite;
+  animation: marquee 45s linear infinite;
 }
 
 .marquee-item {

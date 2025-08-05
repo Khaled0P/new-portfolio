@@ -1,145 +1,104 @@
 const navLinks = [
   {
-    name: "Work",
-    link: "#work",
+    name: 'Work',
+    link: '#work',
   },
   {
-    name: "Experience",
-    link: "#experience",
+    name: 'Experience',
+    link: '#experience',
   },
   {
-    name: "Skills",
-    link: "#skills",
+    name: 'Skills',
+    link: '#skills',
   },
   {
-    name: "Testimonials",
-    link: "#testimonials",
+    name: 'Testimonials',
+    link: '#testimonials',
   },
 ];
 
 const words = [
-  { text: "Ideas", imgPath: "/images/ideas.svg" },
-  { text: "Concepts", imgPath: "/images/concepts.svg" },
-  { text: "Designs", imgPath: "/images/designs.svg" },
-  { text: "Code", imgPath: "/images/code.svg" },
-  { text: "Ideas", imgPath: "/images/ideas.svg" },
-  { text: "Concepts", imgPath: "/images/concepts.svg" },
-  { text: "Designs", imgPath: "/images/designs.svg" },
-  { text: "Code", imgPath: "/images/code.svg" },
+  { text: 'Ideas', imgPath: '/images/ideas.svg' },
+  { text: 'Concepts', imgPath: '/images/concepts.svg' },
+  { text: 'Designs', imgPath: '/images/designs.svg' },
+  { text: 'Code', imgPath: '/images/code.svg' },
+  { text: 'Ideas', imgPath: '/images/ideas.svg' },
+  { text: 'Concepts', imgPath: '/images/concepts.svg' },
+  { text: 'Designs', imgPath: '/images/designs.svg' },
+  { text: 'Code', imgPath: '/images/code.svg' },
 ];
 
 const counterItems = [
-  { value: 2, suffix: "+", label: "Years of Experience" },
-  { value: 30, suffix: "+", label: "Projects Delivered" },
-  { value: 650, suffix: "+", label: "Code Commits" },
-  { value: 200, suffix: "+", label: "Code Reviews Performed" },
+  { value: 2, suffix: '+', label: 'Years of Experience' },
+  { value: 30, suffix: '+', label: 'Projects Delivered' },
+  { value: 650, suffix: '+', label: 'Code Commits' },
+  { value: 200, suffix: '+', label: 'Code Reviews Performed' },
 ];
 
 const logoIconsList = [
   {
-    imgPath: "/images/logos/company-logo-1.png",
+    imgPath: '/images/logos/company-logo-1.png',
   },
   {
-    imgPath: "/images/logos/company-logo-2.png",
+    imgPath: '/images/logos/company-logo-2.png',
   },
   {
-    imgPath: "/images/logos/company-logo-3.png",
+    imgPath: '/images/logos/company-logo-3.png',
   },
   {
-    imgPath: "/images/logos/company-logo-4.png",
+    imgPath: '/images/logos/company-logo-4.png',
   },
   {
-    imgPath: "/images/logos/company-logo-5.png",
+    imgPath: '/images/logos/company-logo-5.png',
   },
   {
-    imgPath: "/images/logos/company-logo-6.png",
+    imgPath: '/images/logos/company-logo-6.png',
   },
   {
-    imgPath: "/images/logos/company-logo-7.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-8.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-9.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-10.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-11.png",
+    imgPath: '/images/logos/company-logo-7.png',
   },
 ];
 
 const abilities = [
   {
-    imgPath: "/images/seo.png",
-    title: "Quality Focus",
-    desc: "Delivering high-quality results while maintaining attention to every detail.",
+    imgPath: '/images/seo.png',
+    title: 'Quality Focus',
+    desc: 'Delivering high-quality results while maintaining attention to every detail.',
   },
   {
-    imgPath: "/images/chat.png",
-    title: "Reliable Communication",
-    desc: "Keeping you updated at every step to ensure transparency and clarity.",
+    imgPath: '/images/chat.png',
+    title: 'Reliable Communication',
+    desc: 'Keeping you updated at every step to ensure transparency and clarity.',
   },
   {
-    imgPath: "/images/time.png",
-    title: "On-Time Delivery",
-    desc: "Making sure projects are completed on schedule, with quality & attention to detail.",
-  },
-];
-
-const techStackImgs = [
-  {
-    name: "React Developer",
-    imgPath: "/images/logos/react.png",
-  },
-  {
-    name: "Python Developer",
-    imgPath: "/images/logos/python.svg",
-  },
-  {
-    name: "Backend Developer",
-    imgPath: "/images/logos/node.png",
-  },
-  {
-    name: "Interactive Developer",
-    imgPath: "/images/logos/three.png",
-  },
-  {
-    name: "Project Manager",
-    imgPath: "/images/logos/git.svg",
+    imgPath: '/images/time.png',
+    title: 'On-Time Delivery',
+    desc: 'Making sure projects are completed on schedule, with quality & attention to detail.',
   },
 ];
 
 const techStackIcons = [
   {
-    name: "React Developer",
-    modelPath: "/models/react_logo-transformed.glb",
+    name: 'React / Next Developer',
+    modelPath: '/models/react_logo-transformed.glb',
     scale: 1,
     rotation: [0, 0, 0],
   },
   {
-    name: "Python Developer",
-    modelPath: "/models/python-transformed.glb",
-    scale: 0.8,
-    rotation: [0, 0, 0],
+    name: 'Shopify Developer',
+    modelPath: '/models/shopify-optimized.glb',
+    scale: 1.4,
+    rotation: [0, -Math.PI / 3.3, 0],
   },
   {
-    name: "Backend Developer",
-    modelPath: "/models/node-transformed.glb",
+    name: 'JavaScript Developer',
+    modelPath: '/models/node-transformed.glb',
     scale: 5,
     rotation: [0, -Math.PI / 2, 0],
   },
   {
-    name: "Interactive Developer",
-    modelPath: "/models/three.js-transformed.glb",
-    scale: 0.05,
-    rotation: [0, 0, 0],
-  },
-  {
-    name: "Project Manager",
-    modelPath: "/models/git-svg-transformed.glb",
+    name: 'Workflow Management',
+    modelPath: '/models/git-svg-transformed.glb',
     scale: 0.05,
     rotation: [0, -Math.PI / 4, 0],
   },
@@ -148,125 +107,81 @@ const techStackIcons = [
 const expCards = [
   {
     review:
-      "Adrian brought creativity and technical expertise to the team, significantly improving our frontend performance. His work has been invaluable in delivering faster experiences.",
-    imgPath: "/images/exp1.png",
-    logoPath: "/images/logo1.png",
-    title: "Frontend Developer",
-    date: "January 2023 - Present",
+      'Khaled has a real talent for simplifying complex problems. He completely reworked our frontend, which gave us a solid foundation to build on. His new workflow and smart reusable components made our jobs easier and helped us all work together much more smoothly.',
+    imgPath: '/images/logos/company-logo-1.png',
+    logoPath: '/images/logo1.png',
+    title: 'Frontend Developer',
+    date: 'May 2025 - Present',
     responsibilities: [
-      "Developed and maintained user-facing features for the Hostinger website.",
-      "Collaborated closely with UI/UX designers to ensure seamless user experiences.",
-      "Optimized web applications for maximum speed and scalability.",
+      'Led frontend development of Task Flow, a large-scale SaaS platform for managing academic operations in schools and universities.',
+      'Architectied a scalable, SSR-optimized frontend with reusable components, dynamic dashboards, and role-based access (admin, teacher, student, super admin).',
+      'Built reusable table systems, modals, and assignment flows for efficient student, course, and teacher management',
+      'Drove frontend architecture decisions, performance optimization, and collaboration with backend/API teams and other frontend devs.',
     ],
   },
   {
     review:
-      "Adrian’s contributions to Docker's web applications have been outstanding. He approaches challenges with a problem-solving mindset.",
-    imgPath: "/images/exp2.png",
-    logoPath: "/images/logo2.png",
-    title: "Full Stack Developer",
-    date: "June 2020 - December 2023",
+      "Khaled's implementation of my designs is one of the best I have seen.",
+    imgPath: '/images/exp2.png',
+    logoPath: '/images/logo2.png',
+    title: 'Frontend / Shopify Developer',
+    date: 'February 2024 – December 2024',
     responsibilities: [
-      "Led the development of Docker's web applications, focusing on scalability.",
-      "Worked with backend engineers to integrate APIs seamlessly with the frontend.",
-      "Contributed to open-source projects that were used with the Docker ecosystem.",
+      'Developed and integrated advanced features into React, Next.JS websites, creating seamless user experiences.',
+      'Built APIs and handled full-stack development for feature implementations, and provided cloud based solutions for ideal performance',
+      'Built and customized Shopify stores end-to-end, delivering scalable, optimized, and user-friendly e-commerce solutions.',
     ],
   },
   {
     review:
-      "Adrian’s work on Appwrite’s mobile app brought a high level of quality and efficiency. He delivered solutions that enhanced our mobile experience & meet our product goals.",
-    imgPath: "/images/exp3.png",
-    logoPath: "/images/logo3.png",
-    title: "React Native Developer",
-    date: "March 2019 - May 2020",
+      'It was a pleasure working with Khaled on this project. He built the website with incredible attention to detail. He followed my ideas perfectly, but also elevated them by suggesting smarter solutions throughout the process. Even when we had to make changes, he was always flexible and quick to adapt. I especially appreciated how clearly he explained his code and shared his workflow live.',
+    imgPath: '/images/exp3.png',
+    logoPath: '/images/logo3.png',
+    title: 'Software Developer',
+    date: 'January 2023 – February 2024',
     responsibilities: [
-      "Built cross-platform mobile apps using React Native, integrating with Appwrite's backend services.",
-      "Improved app performance and user experience through code optimization and testing.",
-      "Coordinated with the product team to implement features based on feedback.",
+      ' Spearheaded the development of a high-performance website, significantly increasing sales and brand visibility.',
+      'Delivered pixel-perfect implementation of creative designs.',
+      'Contributed to The Odin Project open-source website by aligning website styles with the style guide.',
     ],
   },
 ];
 
 const expLogos = [
   {
-    name: "logo1",
-    imgPath: "/images/logo1.png",
+    name: 'logo1',
+    imgPath: '/images/logo1.png',
   },
   {
-    name: "logo2",
-    imgPath: "/images/logo2.png",
+    name: 'logo2',
+    imgPath: '/images/logo2.png',
   },
   {
-    name: "logo3",
-    imgPath: "/images/logo3.png",
-  },
-];
-
-const testimonials = [
-  {
-    name: "Esther Howard",
-    mentions: "@estherhoward",
-    review:
-      "I can’t say enough good things about Adrian. He was able to take our complex project requirements and turn them into a seamless, functional website. His problem-solving abilities are outstanding.",
-    imgPath: "/images/client1.png",
-  },
-  {
-    name: "Wade Warren",
-    mentions: "@wadewarren",
-    review:
-      "Working with Adrian was a fantastic experience. He transformed our outdated website into a modern, user-friendly platform. His attention to detail and commitment to quality are unmatched. Highly recommend him for any web dev projects.",
-    imgPath: "/images/client3.png",
-  },
-  {
-    name: "Guy Hawkins",
-    mentions: "@guyhawkins",
-    review:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    imgPath: "/images/client2.png",
-  },
-  {
-    name: "Marvin McKinney",
-    mentions: "@marvinmckinney",
-    review:
-      "Adrian was a pleasure to work with. He turned our outdated website into a fresh, intuitive platform that’s both modern and easy to navigate. Fantastic work overall.",
-    imgPath: "/images/client5.png",
-  },
-  {
-    name: "Floyd Miles",
-    mentions: "@floydmiles",
-    review:
-      "Adrian’s expertise in web development is truly impressive. He delivered a robust and scalable solution for our e-commerce site, and our online sales have significantly increased since the launch. He’s a true professional!",
-    imgPath: "/images/client4.png",
-  },
-  {
-    name: "Albert Flores",
-    mentions: "@albertflores",
-    review:
-      "Adrian was a pleasure to work with. He understood our requirements perfectly and delivered a website that exceeded our expectations. His skills in both frontend and backend dev are top-notch.",
-    imgPath: "/images/client6.png",
+    name: 'logo3',
+    imgPath: '/images/logo3.png',
   },
 ];
 
 const socialImgs = [
   {
-    name: "insta",
-    url: "https://www.instagram.com/",
-    imgPath: "/images/insta.png",
+    name: 'insta',
+    url: 'https://www.instagram.com/',
+    imgPath: '/images/insta.png',
   },
   {
-    name: "fb",
-    url: "https://www.facebook.com/",
-    imgPath: "/images/fb.png",
+    name: 'fb',
+    url: 'https://www.facebook.com/',
+    imgPath: '/images/fb.png',
   },
   {
-    name: "x",
-    url: "https://www.x.com/",
-    imgPath: "/images/x.png",
+    name: 'x',
+    url: 'https://www.x.com/',
+    imgPath: '/images/x.png',
   },
   {
-    name: "linkedin",
-    url: "https://www.linkedin.com/",
-    imgPath: "/images/linkedin.png",
+    name: 'linkedin',
+    url: 'https://www.linkedin.com/',
+    imgPath: '/images/linkedin.png',
   },
 ];
 
@@ -277,9 +192,7 @@ export {
   counterItems,
   expCards,
   expLogos,
-  testimonials,
   socialImgs,
   techStackIcons,
-  techStackImgs,
   navLinks,
 };

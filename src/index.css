@@ -385,6 +385,24 @@ section {
   }
 }
 
+.animate-right {
+  animation: moveRight 1s ease-in-out infinite;
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
 /* Hero Text slider ends */
 
 .gradient-line {
@@ -392,8 +410,8 @@ section {
   background: linear-gradient(
     0deg,
     rgb(69 222 196 / 0%) 0%,
-    #c7144a 25%,
-    #a1190b 37.51%,
+    #c7144a 20%,
+    #a1190b 30.51%,
     #fff 62.83%,
     #1d4ac1 92.91%
   );

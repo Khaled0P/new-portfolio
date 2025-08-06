@@ -7,6 +7,7 @@ import NavBar from './sections/NavBar';
 import ShowcaseSection from './sections/ShowcaseSection';
 import TechStack from './sections/TechStack';
 import { Toaster } from 'sonner';
+import Footer from './sections/Footer';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
       <ExperienceSection />
       <TechStack />
       <Contact />
+      <Footer />
     </>
   );
 };

@@ -10,11 +10,7 @@ const navLinks = [
   {
     name: 'Skills',
     link: '#skills',
-  },
-  {
-    name: 'Testimonials',
-    link: '#testimonials',
-  },
+  }
 ];
 
 const words = [
@@ -164,23 +160,13 @@ const expLogos = [
 
 const socialImgs = [
   {
-    name: 'insta',
-    url: 'https://www.instagram.com/',
-    imgPath: '/images/insta.png',
-  },
-  {
-    name: 'fb',
-    url: 'https://www.facebook.com/',
-    imgPath: '/images/fb.png',
-  },
-  {
-    name: 'x',
-    url: 'https://www.x.com/',
-    imgPath: '/images/x.png',
+    name: 'Github',
+    url: 'https://github.com/Khaled0P',
+    imgPath: '/images/github.png',
   },
   {
     name: 'linkedin',
-    url: 'https://www.linkedin.com/',
+    url: 'https://www.linkedin.com/in/khaled-abdelrhem/',
     imgPath: '/images/linkedin.png',
   },
 ];

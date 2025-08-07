@@ -4,7 +4,6 @@ import { useFrame } from "@react-three/fiber";
 
 const Particles = ({ count = 200 }) => {
   const mesh = useRef();
-  const startTime = useRef(performance.now()); // store absolute start time
 
   const particles = useMemo(() => {
     const temp = [];

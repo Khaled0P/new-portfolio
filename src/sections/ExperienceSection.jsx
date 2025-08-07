@@ -10,17 +10,19 @@ gsap.registerPlugin(ScrollTrigger);
 const ExperienceSection = () => {
   useGSAP(() => {
     gsap.utils.toArray('.timeline-card').forEach((card) => {
+      gsap.set(card, { xPercent: -100, opacity: 0 });
       ScrollTrigger.batch(card, {
         onEnter: (batch) => {
-          gsap.from(batch, {
-            xPercent: -100,
-            opacity: 0,
+          gsap.to(batch, {
+            xPercent: 0,
+            opacity: 1,
             duration: 1,
             stagger: 0.2,
             ease: 'power2.inOut',
           });
         },
         start: 'top 80%',
+        once: true
       });
     });
 
@@ -36,7 +38,7 @@ const ExperienceSection = () => {
       start: 'top center',
       end: '70% center',
       onUpdate: (self) => {
-        scaleTween.progress(self.progress);
+        scaleTween.progress(self.progress - .07);
       },
     });
 

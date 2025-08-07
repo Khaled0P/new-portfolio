@@ -100,6 +100,25 @@ const techStackIcons = [
   },
 ];
 
+const techStackImgs = [
+  {
+    name: "React / Next Developer",
+    imgPath: "/images/logos/react.png",
+  },
+  {
+    name: "Shopify Developer",
+    imgPath: "/images/logos/shopify.png",
+  },
+  {
+    name: "JavaScript Developer",
+    imgPath: "/images/logos/node.png",
+  },
+  {
+    name: "Project Manager",
+    imgPath: "/images/logos/git.svg",
+  },
+];
+
 const expCards = [
   {
     review:
@@ -180,5 +199,6 @@ export {
   expLogos,
   socialImgs,
   techStackIcons,
+  techStackImgs,
   navLinks,
 };

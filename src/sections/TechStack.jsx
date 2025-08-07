@@ -1,13 +1,18 @@
 import TitleHeader from '../components/TitleHeader';
-import { techStackIcons } from '../constants';
+import { techStackIcons, techStackImgs } from '../constants';
 import TechIcon from '../components/Models/TechLogos/TechIcon';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { useGLTF } from '@react-three/drei';
+import { useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const TechStack = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+
   useGSAP(() => {
     gsap.fromTo(
       '.tech-card',
@@ -19,12 +24,19 @@ const TechStack = () => {
         ease: 'power2.inOut',
         stagger: 0.2,
         scrollTrigger: {
-            trigger: '#skills',
-            start: 'top center'
-        }
+          trigger: '#skills',
+          start: 'top center',
+        },
       }
     );
   });
+
+  useEffect(() => {
+    techStackIcons.forEach((icon) => {
+      useGLTF.preload(icon.modelPath);
+    });
+  }, []);
+
   return (
     <section id="skills" className="flex-center section-padding">
       <div className="w-full h-full md:px-10 px-5">
@@ -34,7 +46,7 @@ const TechStack = () => {
         />
 
         <div className="tech-grid">
-          {techStackIcons.map((icon) => (
+          {(isMobile ? techStackImgs : techStackIcons).map((icon) => (
             <div
               key={icon.name}
               className="card-border relative tech-card overflow-hidden group xl:rounded-full rounded-lg"
@@ -42,7 +54,15 @@ const TechStack = () => {
               <div className="tech-card-animated-bg" />
               <div className="tech-card-content">
                 <div className="tech-icon-wrapper">
-                  <TechIcon model={icon} />
+                  {isMobile ? (
+                    <img
+                      src={icon.imgPath}
+                      alt={icon.name}
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <TechIcon model={icon} />
+                  )}
                 </div>
                 <div className="padding-x w-full">
                   <p>{icon.name}</p>

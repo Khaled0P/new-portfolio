@@ -10,31 +10,33 @@ gsap.registerPlugin(ScrollTrigger);
 const ExperienceSection = () => {
   useGSAP(() => {
     gsap.utils.toArray('.timeline-card').forEach((card) => {
-      gsap.from(card, {
-        xPercent: -100,
-        opacity: 0,
-        transformOrigin: 'left left',
-        duration: 1,
-        ease: 'power2.inOut',
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 80%',
+      ScrollTrigger.batch(card, {
+        onEnter: (batch) => {
+          gsap.from(batch, {
+            xPercent: -100,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: 'power2.inOut',
+          });
         },
+        start: 'top 80%',
       });
     });
 
-    gsap.to('.timeline', {
+    const scaleTween = gsap.to('.timeline', {
+      scaleY: 0,
       transformOrigin: 'bottom bottom',
       ease: 'power1.inOut',
-      scrollTrigger: {
-        trigger: '.timeline',
-        start: 'top center',
-        end: '70% center',
-        onUpdate: (self) => {
-          gsap.to('.timeline', {
-            scaleY: 1 - self.progress,
-          });
-        },
+      paused: true,
+    });
+
+    ScrollTrigger.create({
+      trigger: '.timeline',
+      start: 'top center',
+      end: '70% center',
+      onUpdate: (self) => {
+        scaleTween.progress(self.progress);
       },
     });
 
@@ -67,7 +69,7 @@ const ExperienceSection = () => {
               <div key={card.title} className="exp-card-wrapper">
                 <div className="xl:w-2/6">
                   <GlowCard card={card} index={index}>
-                    <div className='max-w-[180px]'>
+                    <div className="max-w-[180px]">
                       <img src={card.imgPath} alt={card.title} />
                     </div>
                   </GlowCard>
@@ -75,7 +77,10 @@ const ExperienceSection = () => {
                 <div className="xl:w-4/6">
                   <div className="flex items-start">
                     <div className="timeline-wrapper">
-                      <div className="timeline" />
+                      <div
+                        className="timeline"
+                        style={{ willChange: 'transform' }}
+                      />
                       <div className="gradient-line w-1 h-full" />
                     </div>
                     <div className="expText flex xl:gap-20 md:gap-10 gap-5 relative z-20">

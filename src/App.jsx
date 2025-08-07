@@ -1,13 +1,15 @@
-import ExperienceSection from './sections/ExperienceSection';
-import Contact from './sections/Contact';
-import FeatureCards from './sections/FeatureCards';
 import Hero from './sections/Hero';
-import LogoSection from './sections/LogoSection';
 import NavBar from './sections/NavBar';
-import ShowcaseSection from './sections/ShowcaseSection';
-import TechStack from './sections/TechStack';
-import { Toaster } from 'sonner';
 import Footer from './sections/Footer';
+import { Toaster } from 'sonner';
+import { Suspense, lazy } from 'react';
+import TechStack from './sections/TechStack';
+import Contact from './sections/Contact';
+
+const ShowcaseSection = lazy(() => import('./sections/ShowcaseSection'));
+const LogoSection = lazy(() => import('./sections/LogoSection'));
+const FeatureCards = lazy(() => import('./sections/FeatureCards'));
+const ExperienceSection = lazy(() => import('./sections/ExperienceSection'));
 
 const App = () => {
   return (
@@ -15,10 +17,18 @@ const App = () => {
       <Toaster position="top-right" richColors />
       <NavBar />
       <Hero />
-      <ShowcaseSection />
-      <LogoSection />
-      <FeatureCards />
-      <ExperienceSection />
+      <Suspense
+        fallback={
+          <div className="w-full flex-center py-20 text-white-50">
+            Loading...
+          </div>
+        }
+      >
+        <ShowcaseSection />
+        <LogoSection />
+        <FeatureCards />
+        <ExperienceSection />
+      </Suspense>
       <TechStack />
       <Contact />
       <Footer />

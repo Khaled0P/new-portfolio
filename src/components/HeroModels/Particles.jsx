@@ -4,7 +4,7 @@ import { useFrame } from "@react-three/fiber";
 
 const Particles = ({ count = 200 }) => {
   const mesh = useRef();
-  const timeRef = useRef(0); // manually tracked time
+  const startTime = useRef(performance.now()); // store absolute start time
 
   const particles = useMemo(() => {
     const temp = [];
@@ -13,16 +13,16 @@ const Particles = ({ count = 200 }) => {
         initialY: Math.random() * 10 + 5,
         position: [
           (Math.random() - 0.5) * 10,
-          0, // will be set based on initialY + time
+          0,
           (Math.random() - 0.5) * 10,
         ],
-        speed: 0.3 + Math.random() * 0.1
+        speed: 0.3 + Math.random() * 0.1,
+        birthTime: 0, // new particle's birth time
       });
     }
     return temp;
   }, [count]);
 
-  // Generate initial positions array
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3);
     particles.forEach((p, i) => {
@@ -34,30 +34,26 @@ const Particles = ({ count = 200 }) => {
   }, [count, particles]);
 
   useFrame((_, delta) => {
-    timeRef.current += delta;
-    const elapsed = timeRef.current;
+  const positionAttr = mesh.current.geometry.attributes.position;
+  const arr = positionAttr.array;
 
-    const positionAttr = mesh.current.geometry.attributes.position;
-    const arr = positionAttr.array;
+  for (let i = 0; i < count; i++) {
+    const p = particles[i];
 
-    for (let i = 0; i < count; i++) {
-      const p = particles[i];
-      const fallDistance = p.speed * elapsed;
+    // Move particle down
+    arr[i * 3 + 1] -= p.speed * delta;
 
-      let y = p.initialY - fallDistance;
-
-      if (y < -2) {
-        // Reset particle to the top and update its "start time"
-        p.initialY = Math.random() * 10 + 5;
-        p.speed = 0.005 + Math.random() * 0.001;
-        y = p.initialY;
-      }
-
-      arr[i * 3 + 1] = y;
+    // If particle is below the floor, reset it
+    if (arr[i * 3 + 1] < -2) {
+      arr[i * 3] = (Math.random() - 0.5) * 10;         // random X
+      arr[i * 3 + 1] = Math.random() * 10 + 5;         // reset Y at top
+      arr[i * 3 + 2] = (Math.random() - 0.5) * 10;     // random Z
+      p.speed = 0.3 + Math.random() * 0.1;             // restore normal speed
     }
+  }
 
-    positionAttr.needsUpdate = true;
-  });
+  positionAttr.needsUpdate = true;
+});
 
   return (
     <points ref={mesh}>

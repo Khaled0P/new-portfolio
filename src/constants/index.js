@@ -137,8 +137,8 @@ const expCards = [
   {
     review:
       "Khaled's implementation of my designs is one of the best I have seen.",
-    imgPath: '/images/exp2.png',
-    logoPath: '/images/logo2.png',
+    imgPath: '/images/exp2.webp',
+    logoPath: '/images/logo2.webp',
     title: 'Frontend / Shopify Developer',
     date: 'February 2024 – December 2024',
     responsibilities: [
@@ -169,7 +169,7 @@ const expLogos = [
   },
   {
     name: 'logo2',
-    imgPath: '/images/logo2.png',
+    imgPath: '/images/logo2.webp',
   },
   {
     name: 'logo3',

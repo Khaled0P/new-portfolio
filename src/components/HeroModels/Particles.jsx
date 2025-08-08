@@ -1,13 +1,16 @@
 /* eslint-disable react/no-unknown-property */
 import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
+import { useMediaQuery } from "react-responsive";
 
 const Particles = ({ count = 200 }) => {
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const effectiveCount = isMobile ? Math.min(count, 50) : count;
   const mesh = useRef();
 
   const particles = useMemo(() => {
     const temp = [];
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < effectiveCount; i++) {
       temp.push({
         initialY: Math.random() * 10 + 5,
         position: [
@@ -20,23 +23,23 @@ const Particles = ({ count = 200 }) => {
       });
     }
     return temp;
-  }, [count]);
+  }, [effectiveCount]);
 
   const positions = useMemo(() => {
-    const arr = new Float32Array(count * 3);
+    const arr = new Float32Array(effectiveCount * 3);
     particles.forEach((p, i) => {
       arr[i * 3] = p.position[0];
       arr[i * 3 + 1] = p.initialY;
       arr[i * 3 + 2] = p.position[2];
     });
     return arr;
-  }, [count, particles]);
+  }, [effectiveCount, particles]);
 
   useFrame((_, delta) => {
   const positionAttr = mesh.current.geometry.attributes.position;
   const arr = positionAttr.array;
 
-  for (let i = 0; i < count; i++) {
+  for (let i = 0; i < effectiveCount; i++) {
     const p = particles[i];
 
     // Move particle down
@@ -59,7 +62,7 @@ const Particles = ({ count = 200 }) => {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={count}
+          count={effectiveCount}
           array={positions}
           itemSize={3}
         />

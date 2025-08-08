@@ -38,11 +38,11 @@ const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
       
 
       {/* Key meshes with optimized materials and shadows */}
-      <mesh geometry={nodes._________6_blinn1_0.geometry} material={curtainMaterial} castShadow receiveShadow />
-      <mesh geometry={nodes.body1_blinn1_0.geometry} material={bodyMaterial} castShadow receiveShadow />
-      <mesh geometry={nodes.cabin_blinn1_0.geometry} material={tableMaterial} castShadow receiveShadow />
-      <mesh geometry={nodes.chair_body_blinn1_0.geometry} material={chairMaterial} castShadow receiveShadow />
-      <mesh geometry={nodes.comp_blinn1_0.geometry} material={compMaterial} castShadow receiveShadow />
+      <mesh geometry={nodes._________6_blinn1_0.geometry} material={curtainMaterial} castShadow={!isMobile} receiveShadow={!isMobile} />
+      <mesh geometry={nodes.body1_blinn1_0.geometry} material={bodyMaterial} castShadow={!isMobile} receiveShadow={!isMobile} />
+      <mesh geometry={nodes.cabin_blinn1_0.geometry} material={tableMaterial} castShadow={!isMobile} receiveShadow={!isMobile} />
+      <mesh geometry={nodes.chair_body_blinn1_0.geometry} material={chairMaterial} castShadow={!isMobile} receiveShadow={!isMobile} />
+      <mesh geometry={nodes.comp_blinn1_0.geometry} material={compMaterial} castShadow={!isMobile} receiveShadow={!isMobile} />
       <mesh ref={screensRef} geometry={nodes.emis_lambert1_0.geometry} material={materials.lambert1} />
 
       {/* All other static meshes (no material changes) */}
@@ -74,15 +74,15 @@ const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
           key={name}
           geometry={nodes[name].geometry}
           material={materials.blinn1}
-          castShadow
-          receiveShadow
+          castShadow={!isMobile}
+          receiveShadow={!isMobile}
         />
       ))}
 
-      <mesh geometry={nodes.pillows_blinn1_0.geometry} material={pillowMaterial} castShadow receiveShadow />
-      <mesh geometry={nodes.table_blinn1_0.geometry} material={tableMaterial} castShadow receiveShadow />
-      <mesh geometry={nodes.radiator_blinn1_0.geometry} material={radiatorMaterial} castShadow receiveShadow />
-      <mesh geometry={nodes.window4_phong1_0.geometry} material={materials.phong1} castShadow receiveShadow />
+      <mesh geometry={nodes.pillows_blinn1_0.geometry} material={pillowMaterial} castShadow={!isMobile} receiveShadow={!isMobile} />
+      <mesh geometry={nodes.table_blinn1_0.geometry} material={tableMaterial} castShadow={!isMobile} receiveShadow={!isMobile} />
+      <mesh geometry={nodes.radiator_blinn1_0.geometry} material={radiatorMaterial} castShadow={!isMobile} receiveShadow={!isMobile} />
+      <mesh geometry={nodes.window4_phong1_0.geometry} material={materials.phong1} castShadow={!isMobile} receiveShadow={!isMobile} />
     </group>
   );
 }

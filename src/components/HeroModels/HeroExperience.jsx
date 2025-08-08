@@ -13,7 +13,13 @@ const HeroExperience = () => {
   const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.3 });
   return (
     <div ref={ref} style={{ width: '100%', height: '100%' }}>
-        <Canvas camera={{ position: [0, 0, 15], fov: 45 }}>
+        <Canvas 
+          camera={{ position: [0, 0, 15], fov: 45 }}
+          gl={{ 
+            antialias: !isMobile,
+            powerPreference: isMobile ? 'low-power' : 'high-performance'
+          }}
+        >
           <PauseCanvasWhenOffscreen inView={inView} />
           <OrbitControls
             enablePan={false}
@@ -24,7 +30,7 @@ const HeroExperience = () => {
             maxPolarAngle={Math.PI / 2}
           />
           <HeroLights />
-          <Particles count={50} />
+          <Particles count={isMobile ? 50 : 200} />
           {/* eslint-disable-next-line react/no-unknown-property */}
           <group scale={isMobile ? 0.7 : 1} position={[0, -3.5 ,0]} rotation={[0, -Math.PI / 4, 0]}>
             <Room />

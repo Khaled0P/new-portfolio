@@ -16,18 +16,21 @@ const ShowcaseSection = memo(() => {
   const prefersReducedMotion = useMediaQuery({ query: '(prefers-reduced-motion: reduce)' });
 
   useGSAP(() => {
-    if (prefersReducedMotion) {
-      gsap.set([sectionRef.current, project1Ref.current, project2Ref.current, project3Ref.current], { 
-        opacity: 1, y: 0 
-      });
-      return;
-    }
-
     const projects = [
       project1Ref.current,
       project2Ref.current,
       project3Ref.current,
     ];
+
+    gsap.set(sectionRef.current, { opacity: 0 });
+    gsap.set(projects, { y: 50, opacity: 0 });
+
+    if (prefersReducedMotion) {
+      gsap.set([sectionRef.current, ...projects], { 
+        opacity: 1, y: 0 
+      });
+      return;
+    }
 
     gsap.set([sectionRef.current, ...projects], {
       force3D: true,

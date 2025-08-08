@@ -1,6 +1,6 @@
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, memo } from 'react';
 
-const GlowCard = ({ card, children, index }) => {
+const GlowCard = memo(({ card, children, index }) => {
   const cardRefs = useRef([]);
 
   const handleMouseMove = useCallback((index) => {
@@ -49,6 +49,8 @@ const GlowCard = ({ card, children, index }) => {
       {children}
     </div>
   );
-};
+});
+
+GlowCard.displayName = 'GlowCard';
 
 export default GlowCard;

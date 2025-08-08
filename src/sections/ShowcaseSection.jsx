@@ -1,46 +1,81 @@
-import { useRef } from 'react';
+import { useRef, memo } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { useMediaQuery } from 'react-responsive';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ShowcaseSection = () => {
+const ShowcaseSection = memo(() => {
   const sectionRef = useRef(null);
   const project1Ref = useRef(null);
   const project2Ref = useRef(null);
   const project3Ref = useRef(null);
 
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const prefersReducedMotion = useMediaQuery({ query: '(prefers-reduced-motion: reduce)' });
+
   useGSAP(() => {
+    if (prefersReducedMotion) {
+      gsap.set([sectionRef.current, project1Ref.current, project2Ref.current, project3Ref.current], { 
+        opacity: 1, y: 0 
+      });
+      return;
+    }
+
     const projects = [
       project1Ref.current,
       project2Ref.current,
       project3Ref.current,
     ];
 
+    gsap.set([sectionRef.current, ...projects], {
+      force3D: true,
+      willChange: 'transform, opacity'
+    });
+
     gsap.fromTo(
       sectionRef.current,
       { opacity: 0 },
-      { opacity: 1, duration: 1 }
+      { 
+        opacity: 1, 
+        duration: isMobile ? 0.6 : 1,
+        onComplete: () => {
+          sectionRef.current.style.willChange = 'auto';
+        }
+      }
     );
 
-    projects.forEach((project, index) => {
-      gsap.fromTo(
-        project,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          delay: 0.3 * (index + 1),
-          scrollTrigger: {
-            trigger: project,
-            start: 'top bottom-=100',
-          },
-        }
-      );
+    ScrollTrigger.batch(projects, {
+      onEnter: (elements) => {
+        gsap.fromTo(elements, 
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: isMobile ? 0.6 : 1,
+            stagger: isMobile ? 0.15 : 0.3,
+            ease: 'power2.out',
+            force3D: true,
+            onComplete: () => {
+              elements.forEach(el => {
+                el.style.willChange = 'auto';
+              });
+            }
+          }
+        );
+      },
+      start: 'top bottom-=100',
+      once: true,
+      batchMax: 3
     });
-  }, []);
+
+    return () => {
+      [sectionRef.current, ...projects].forEach(el => {
+        if (el) el.style.willChange = 'auto';
+      });
+    };
+  }, [isMobile, prefersReducedMotion]);
 
   return (
     <section id="work" className="app-showcase" ref={sectionRef}>
@@ -116,6 +151,8 @@ const ShowcaseSection = () => {
       </div>
     </section>
   );
-};
+});
+
+ShowcaseSection.displayName = 'ShowcaseSection';
 
 export default ShowcaseSection;

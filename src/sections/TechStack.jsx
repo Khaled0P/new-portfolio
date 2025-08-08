@@ -5,37 +5,69 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useGLTF } from '@react-three/drei';
-import { useEffect } from 'react';
+import { useEffect, memo, useMemo } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const TechStack = () => {
+const TechStack = memo(() => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const prefersReducedMotion = useMediaQuery({ query: '(prefers-reduced-motion: reduce)' });
+
+  const techStackData = useMemo(() => 
+    isMobile ? techStackImgs : techStackIcons, 
+    [isMobile]
+  );
 
   useGSAP(() => {
-    gsap.fromTo(
-      '.tech-card',
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        ease: 'power2.inOut',
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: '#skills',
-          start: 'top center',
-        },
-      }
-    );
-  });
+    if (prefersReducedMotion) {
+      gsap.set('.tech-card', { opacity: 1, y: 0 });
+      return;
+    }
+
+    gsap.set('.tech-card', {
+      force3D: true,
+      willChange: 'transform, opacity'
+    });
+
+    ScrollTrigger.batch('.tech-card', {
+      onEnter: (elements) => {
+        gsap.fromTo(elements,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: isMobile ? 0.6 : 1,
+            ease: 'power2.out',
+            stagger: isMobile ? 0.1 : 0.2,
+            force3D: true,
+            onComplete: () => {
+              elements.forEach(el => {
+                el.style.willChange = 'auto';
+              });
+            }
+          }
+        );
+      },
+      start: 'top center',
+      once: true,
+      batchMax: 6
+    });
+
+    return () => {
+      document.querySelectorAll('.tech-card').forEach(el => {
+        el.style.willChange = 'auto';
+      });
+    };
+  }, [isMobile, prefersReducedMotion]);
 
   useEffect(() => {
-    techStackIcons.forEach((icon) => {
-      useGLTF.preload(icon.modelPath);
-    });
-  }, []);
+    if (!isMobile) {
+      techStackIcons.forEach((icon) => {
+        useGLTF.preload(icon.modelPath);
+      });
+    }
+  }, [isMobile]);
 
   return (
     <section id="skills" className="flex-center section-padding">
@@ -46,7 +78,7 @@ const TechStack = () => {
         />
 
         <div className="tech-grid">
-          {(isMobile ? techStackImgs : techStackIcons).map((icon) => (
+          {techStackData.map((icon) => (
             <div
               key={icon.name}
               className="card-border relative tech-card overflow-hidden group xl:rounded-full rounded-lg"
@@ -74,6 +106,8 @@ const TechStack = () => {
       </div>
     </section>
   );
-};
+});
+
+TechStack.displayName = 'TechStack';
 
 export default TechStack;

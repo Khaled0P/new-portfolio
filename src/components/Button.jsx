@@ -1,18 +1,22 @@
-const Button = ({ text, className, id }) => {
+import { memo, useCallback } from 'react';
+
+const Button = memo(({ text, className, id }) => {
+  const handleClick = useCallback((e) => {
+    e.preventDefault();
+    const target = document.getElementById('counter');
+    if (target && id) {
+      const offset = window.innerHeight * 0.15;
+      const top =
+        target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }, [id]);
+
   return (
     <a
       href=""
       className={`${className ?? ''} cta-wrapper`}
-      onClick={(e) => {
-        e.preventDefault();
-        const target = document.getElementById('counter');
-        if (target && id) {
-          const offset = window.innerHeight * 0.15;
-          const top =
-            target.getBoundingClientRect().top + window.scrollY - offset;
-            window.scrollTo({ top, behavior: 'smooth' });
-        }
-      }}
+      onClick={handleClick}
     >
       <div className="cta-button group">
         <div className="bg-circle" />
@@ -23,6 +27,8 @@ const Button = ({ text, className, id }) => {
       </div>
     </a>
   );
-};
+});
+
+Button.displayName = 'Button';
 
 export default Button;

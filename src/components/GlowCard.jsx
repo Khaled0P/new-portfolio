@@ -1,28 +1,41 @@
-import { useRef } from 'react';
+import { useRef, useCallback, memo } from 'react';
 
-const GlowCard = ({ card, children, index }) => {
+const GlowCard = memo(({ card, children, index }) => {
   const cardRefs = useRef([]);
 
-  const handleMouseMove = (index) => (e) => {
-    const card = cardRefs.current[index];
-    if (!card) return;
+  const handleMouseMove = useCallback((index) => {
+    let rafId = null;
+    
+    return (e) => {
+      if (rafId) return;
+      
+      rafId = requestAnimationFrame(() => {
+        const card = cardRefs.current[index];
+        if (!card) {
+          rafId = null;
+          return;
+        }
 
-    // get the mnouse position relative to the card
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
+        // get the mouse position relative to the card
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
 
-    // calculate the rotation based on mouse position
-    let angle = Math.atan2(y, x) * (180 / Math.PI);
-    angle = (angle + 360) % 360; // normalize angle to [0, 360)
-    card.style.setProperty('--start', angle + 60);
-  };
+        // calculate the rotation based on mouse position
+        let angle = Math.atan2(y, x) * (180 / Math.PI);
+        angle = (angle + 360) % 360; // normalize angle to [0, 360)
+        card.style.setProperty('--start', angle + 60);
+        
+        rafId = null;
+      });
+    };
+  }, []);
   return (
     <div
       ref={(el) => (cardRefs.current[index] = el)}
       onMouseMove={handleMouseMove(index)}
       className="card card-border timeline-card rounded-xl p-10"
-      style={{ willChange: 'transform, opacity' }}
+      style={{ willChange: 'transform, opacity', transform: 'translateZ(0)' }}
     >
       <div className="glow" />
       <div className="flex items-center gap-1 mb-5">
@@ -36,6 +49,8 @@ const GlowCard = ({ card, children, index }) => {
       {children}
     </div>
   );
-};
+});
+
+GlowCard.displayName = 'GlowCard';
 
 export default GlowCard;

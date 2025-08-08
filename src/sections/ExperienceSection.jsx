@@ -4,57 +4,104 @@ import GlowCard from '../components/GlowCard';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useMediaQuery } from 'react-responsive';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ExperienceSection = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const prefersReducedMotion = useMediaQuery({ query: '(prefers-reduced-motion: reduce)' });
+
   useGSAP(() => {
-    gsap.utils.toArray('.timeline-card').forEach((card) => {
-      gsap.set(card, { xPercent: -100, opacity: 0 });
-      ScrollTrigger.batch(card, {
-        onEnter: (batch) => {
-          gsap.to(batch, {
-            xPercent: 0,
-            opacity: 1,
-            duration: 1,
-            stagger: 0.2,
-            ease: 'power2.inOut',
-          });
-        },
-        start: 'top 80%',
-        once: true
-      });
+    if (prefersReducedMotion) {
+      gsap.set('.timeline-card, .expText', { opacity: 1, xPercent: 0 });
+      gsap.set('.timeline', { scaleY: 0 });
+      return;
+    }
+
+    gsap.set('.timeline-card', { 
+      xPercent: -100, 
+      opacity: 0,
+      force3D: true,
+      willChange: 'transform, opacity'
+    });
+    
+    gsap.set('.expText', { 
+      opacity: 0,
+      force3D: true,
+      willChange: 'transform, opacity'
+    });
+
+    const tl = gsap.timeline({ paused: true });
+    
+    ScrollTrigger.batch('.timeline-card', {
+      onEnter: (elements) => {
+        gsap.to(elements, {
+          xPercent: 0,
+          opacity: 1,
+          duration: isMobile ? 0.6 : 1,
+          stagger: isMobile ? 0.1 : 0.2,
+          ease: 'power2.out',
+          force3D: true,
+          onComplete: () => {
+            elements.forEach(el => {
+              el.style.willChange = 'auto';
+            });
+          }
+        });
+      },
+      start: 'top 80%',
+      once: true,
+      batchMax: 3
     });
 
     const scaleTween = gsap.to('.timeline', {
       scaleY: 0,
       transformOrigin: 'bottom bottom',
-      ease: 'power1.inOut',
+      ease: 'none',
       paused: true,
+      force3D: true
     });
 
     ScrollTrigger.create({
-      trigger: '.timeline',
-      start: 'top center',
-      end: '70% center',
+      trigger: '.timeline-wrapper',
+      start: 'top 30%',
+      end: isMobile ? 'bottom 70%' : 'bottom 50%',
+      scrub: 1,
       onUpdate: (self) => {
-        scaleTween.progress(self.progress - .07);
+        scaleTween.progress(self.progress);
       },
+      onRefresh: () => {
+        scaleTween.progress(0);
+      }
     });
 
-    gsap.utils.toArray('.expText').forEach((text) => {
-      gsap.from(text, {
-        xPercent: 0,
-        opacity: 0,
-        duration: 1,
-        ease: 'power2.inOut',
-        scrollTrigger: {
-          trigger: text,
-          start: 'top 60%',
-        },
-      });
+    ScrollTrigger.batch('.expText', {
+      onEnter: (elements) => {
+        gsap.to(elements, {
+          opacity: 1,
+          duration: isMobile ? 0.6 : 1,
+          ease: 'power2.out',
+          stagger: isMobile ? 0.05 : 0.1,
+          force3D: true,
+          onComplete: () => {
+            elements.forEach(el => {
+              el.style.willChange = 'auto';
+            });
+          }
+        });
+      },
+      start: 'top 60%',
+      once: true,
+      batchMax: 3
     });
-  }, []);
+
+    return () => {
+      document.querySelectorAll('.timeline-card, .expText, .timeline').forEach(el => {
+        el.style.willChange = 'auto';
+      });
+    };
+  }, [isMobile, prefersReducedMotion]);
   return (
     <section
       id="experience"

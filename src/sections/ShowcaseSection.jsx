@@ -11,6 +11,7 @@ const ShowcaseSection = memo(() => {
   const project1Ref = useRef(null);
   const project2Ref = useRef(null);
   const project3Ref = useRef(null);
+  const animationsInitialized = useRef(false);
 
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   const prefersReducedMotion = useMediaQuery({ query: '(prefers-reduced-motion: reduce)' });
@@ -22,8 +23,11 @@ const ShowcaseSection = memo(() => {
       project3Ref.current,
     ];
 
-    gsap.set(sectionRef.current, { opacity: 0 });
-    gsap.set(projects, { y: 50, opacity: 0 });
+    if (!animationsInitialized.current) {
+      gsap.set(sectionRef.current, { opacity: 0 });
+      gsap.set(projects, { y: 50, opacity: 0 });
+      animationsInitialized.current = true;
+    }
 
     if (prefersReducedMotion) {
       gsap.set([sectionRef.current, ...projects], { 

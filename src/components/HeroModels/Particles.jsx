@@ -1,11 +1,20 @@
 /* eslint-disable react/no-unknown-property */
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useMediaQuery } from "react-responsive";
 
 const Particles = ({ count = 200 }) => {
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
-  const effectiveCount = isMobile ? Math.min(count, 50) : count;
+  const isMobileQuery = useMediaQuery({ query: '(max-width: 768px)' });
+  const isMobileRef = useRef(isMobileQuery);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      isMobileRef.current = isMobileQuery;
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [isMobileQuery]);
+
+  const effectiveCount = isMobileRef.current ? Math.min(count, 50) : count;
   const mesh = useRef();
 
   const particles = useMemo(() => {

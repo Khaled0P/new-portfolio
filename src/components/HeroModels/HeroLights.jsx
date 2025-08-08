@@ -1,9 +1,20 @@
 /* eslint-disable react/no-unknown-property */
 import * as THREE from 'three';
+import { useRef, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 const HeroLights = () => {
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const isMobileQuery = useMediaQuery({ query: '(max-width: 768px)' });
+  const isMobileRef = useRef(isMobileQuery);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      isMobileRef.current = isMobileQuery;
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [isMobileQuery]);
+
+  const isMobile = isMobileRef.current;
   return (
     <>
       <spotLight

@@ -32,7 +32,6 @@ const ExperienceSection = () => {
       willChange: 'transform, opacity'
     });
 
-    const tl = gsap.timeline({ paused: true });
     
     ScrollTrigger.batch('.timeline-card', {
       onEnter: (elements) => {

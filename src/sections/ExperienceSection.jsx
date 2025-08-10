@@ -10,7 +10,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ExperienceSection = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
-  const prefersReducedMotion = useMediaQuery({ query: '(prefers-reduced-motion: reduce)' });
+  const prefersReducedMotion = useMediaQuery({
+    query: '(prefers-reduced-motion: reduce)',
+  });
 
   useGSAP(() => {
     if (prefersReducedMotion) {
@@ -19,84 +21,64 @@ const ExperienceSection = () => {
       return;
     }
 
-    gsap.set('.timeline-card', { 
-      xPercent: -100, 
+    gsap.set('.timeline-card', {
+      xPercent: -100,
       opacity: 0,
-      force3D: true,
-      willChange: 'transform, opacity'
-    });
-    
-    gsap.set('.expText', { 
-      opacity: 0,
-      force3D: true,
-      willChange: 'transform, opacity'
     });
 
-    
+    gsap.set('.expText', {
+      opacity: 0,
+    });
+
     ScrollTrigger.batch('.timeline-card', {
       onEnter: (elements) => {
         gsap.to(elements, {
+          willChange: 'transform, opacity',
           xPercent: 0,
           opacity: 1,
           duration: isMobile ? 0.6 : 1,
           stagger: isMobile ? 0.1 : 0.2,
           ease: 'power2.out',
-          onComplete: () => {
-            elements.forEach(el => {
-              el.style.willChange = 'auto';
-            });
-          }
+          onComplete: () => gsap.set(elements, { willChange: 'auto' }),
         });
       },
       start: 'top 60%',
       once: true,
-      batchMax: 3
+      batchMax: 3,
     });
 
-    const scaleTween = gsap.to('.timeline', {
+    gsap.to('.timeline', {
       scaleY: 0,
-      transformOrigin: 'bottom bottom',
+      willChange: 'transform',
+      transformOrigin: 'bottom center',
       ease: 'none',
-      paused: true,
-      force3D: true
-    });
-
-    ScrollTrigger.create({
-      trigger: '.timeline-wrapper',
-      start: 'top 30%',
-      end: isMobile ? 'bottom 70%' : 'bottom 50%',
-      scrub: 1,
-      onUpdate: (self) => {
-        scaleTween.progress(self.progress);
+      scrollTrigger: {
+        trigger: '.timeline-wrapper',
+        start: 'top 30%',
+        end: isMobile ? 'bottom 70%' : 'bottom 50%',
+        scrub: 1,
       },
-      onRefresh: () => {
-        scaleTween.progress(0);
-      }
+      onComplete: () => gsap.set('.timeline', { willChange: 'auto' }),
     });
 
     ScrollTrigger.batch('.expText', {
       onEnter: (elements) => {
         gsap.to(elements, {
+          willChange: 'opacity',
           opacity: 1,
           duration: isMobile ? 0.6 : 1,
           ease: 'power2.out',
           stagger: isMobile ? 0.05 : 0.1,
-          force3D: true,
-          onComplete: () => {
-            elements.forEach(el => {
-              el.style.willChange = 'auto';
-            });
-          }
+          onComplete: () => gsap.set(elements, { willChange: 'auto' }),
         });
       },
       start: 'top 60%',
       once: true,
-      batchMax: 3
+      batchMax: 3,
     });
 
     return () => ScrollTrigger.getAll().forEach((st) => st.kill());
- 
-  }, [isMobile, prefersReducedMotion]);
+  }, []);
   return (
     <section
       id="experience"
@@ -114,22 +96,29 @@ const ExperienceSection = () => {
                 <div className="xl:w-2/6">
                   <GlowCard card={card} index={index}>
                     <div className="max-w-[180px]">
-                      <img src={card.imgPath} alt={card.title} />
+                      <img
+                        src={card.imgPath}
+                        alt={card.title}
+                        width={180}
+                        height={65}
+                      />
                     </div>
                   </GlowCard>
                 </div>
                 <div className="xl:w-4/6">
                   <div className="flex items-start">
                     <div className="timeline-wrapper">
-                      <div
-                        className="timeline"
-                        style={{ willChange: 'transform' }}
-                      />
+                      <div className="timeline" />
                       <div className="gradient-line w-1 h-full" />
                     </div>
                     <div className="expText flex xl:gap-20 md:gap-10 gap-5 relative z-20">
                       <div className="timeline-logo">
-                        <img src={card.logoPath} alt="logo" />
+                        <img
+                          src={card.logoPath}
+                          alt="logo"
+                          width={50}
+                          height={50}
+                        />
                       </div>
                       <div className="">
                         <h1 className="font-semibold text-3xl">{card.title}</h1>

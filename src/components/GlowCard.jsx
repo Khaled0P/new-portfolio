@@ -35,7 +35,6 @@ const GlowCard = memo(({ card, children, index }) => {
       ref={(el) => (cardRefs.current[index] = el)}
       onMouseMove={handleMouseMove(index)}
       className="card card-border timeline-card rounded-xl p-10"
-      style={{ willChange: 'transform, opacity', transform: 'translateZ(0)' }}
     >
       <div className="glow" />
       <div className="flex items-center gap-1 mb-5">

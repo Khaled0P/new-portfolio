@@ -41,7 +41,6 @@ const ExperienceSection = () => {
           duration: isMobile ? 0.6 : 1,
           stagger: isMobile ? 0.1 : 0.2,
           ease: 'power2.out',
-          force3D: true,
           onComplete: () => {
             elements.forEach(el => {
               el.style.willChange = 'auto';
@@ -49,7 +48,7 @@ const ExperienceSection = () => {
           }
         });
       },
-      start: 'top 80%',
+      start: 'top 60%',
       once: true,
       batchMax: 3
     });

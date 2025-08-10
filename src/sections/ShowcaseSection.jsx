@@ -33,7 +33,6 @@ const ShowcaseSection = memo(() => {
     }
 
     gsap.set([sectionRef.current, ...projects], {
-      force3D: true,
       willChange: 'transform, opacity'
     });
 
@@ -91,6 +90,7 @@ const ShowcaseSection = memo(() => {
                 src="/images/project1.webp"
                 alt="Task Flow"
                 srcSet="/images/project1-480.webp 480w, /images/project1-768.webp 768w, /images/project1.webp 1200w"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 width={1200}
                 height={900}
                 loading="lazy"
@@ -123,6 +123,7 @@ const ShowcaseSection = memo(() => {
                   src="/images/project2.webp"
                   alt="Hola Mexico"
                   srcSet="/images/project2-480.webp 480w, /images/project2-768.webp 768w, /images/project2.webp 1200w"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   width={600}
                   height={400}
                   loading="lazy"
@@ -139,6 +140,7 @@ const ShowcaseSection = memo(() => {
                   src="/images/project3.webp"
                   alt="Vitori"
                   srcSet="/images/project3-480.webp 480w, /images/project3-768.webp 768w, /images/project3.webp 1200w"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   width={600}
                   height={400}
                   loading="lazy"

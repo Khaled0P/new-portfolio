@@ -94,11 +94,8 @@ const ExperienceSection = () => {
       batchMax: 3
     });
 
-    return () => {
-      document.querySelectorAll('.timeline-card, .expText, .timeline').forEach(el => {
-        el.style.willChange = 'auto';
-      });
-    };
+    return () => ScrollTrigger.getAll().forEach((st) => st.kill());
+ 
   }, [isMobile, prefersReducedMotion]);
   return (
     <section

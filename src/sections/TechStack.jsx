@@ -12,10 +12,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 const TechStack = memo(() => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
-  const prefersReducedMotion = useMediaQuery({ query: '(prefers-reduced-motion: reduce)' });
+  const prefersReducedMotion = useMediaQuery({
+    query: '(prefers-reduced-motion: reduce)',
+  });
 
-  const techStackData = useMemo(() => 
-    isMobile ? techStackImgs : techStackIcons, 
+  const techStackData = useMemo(
+    () => (isMobile ? techStackImgs : techStackIcons),
     [isMobile]
   );
 
@@ -27,39 +29,27 @@ const TechStack = memo(() => {
 
     gsap.set('.tech-card', {
       force3D: true,
-      willChange: 'transform, opacity'
+      willChange: 'transform, opacity',
     });
 
-    ScrollTrigger.batch('.tech-card', {
-      onEnter: (elements) => {
-        gsap.fromTo(elements,
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: isMobile ? 0.6 : 1,
-            ease: 'power2.out',
-            stagger: isMobile ? 0.1 : 0.2,
-            force3D: true,
-            onComplete: () => {
-              elements.forEach(el => {
-                el.style.willChange = 'auto';
-              });
-            }
-          }
-        );
-      },
-      start: 'top center',
-      once: true,
-      batchMax: 6
-    });
+    gsap.fromTo(
+      '.tech-card',
+      { y: 50, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: 'power2.inOut',
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: '#skills',
+          start: 'top center',
+        },
+      }
+    );
 
-    return () => {
-      document.querySelectorAll('.tech-card').forEach(el => {
-        el.style.willChange = 'auto';
-      });
-    };
-  }, [isMobile, prefersReducedMotion]);
+    return () => ScrollTrigger.getAll().forEach((st) => st.kill());
+  });
 
   useEffect(() => {
     if (!isMobile) {

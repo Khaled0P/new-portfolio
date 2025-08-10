@@ -103,19 +103,19 @@ const techStackIcons = [
 const techStackImgs = [
   {
     name: "React / Next Developer",
-    imgPath: "/images/logos/react.png",
+    imgPath: "/images/logos/react.webp",
   },
   {
     name: "Shopify Developer",
-    imgPath: "/images/logos/shopify.png",
+    imgPath: "/images/logos/shopify.webp",
   },
   {
     name: "JavaScript Developer",
-    imgPath: "/images/logos/node.png",
+    imgPath: "/images/logos/node.webp",
   },
   {
-    name: "Project Manager",
-    imgPath: "/images/logos/git.svg",
+    name: "Workflow Management",
+    imgPath: "/images/logos/git.webp",
   },
 ];
 

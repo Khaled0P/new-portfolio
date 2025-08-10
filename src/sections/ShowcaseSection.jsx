@@ -13,7 +13,9 @@ const ShowcaseSection = memo(() => {
   const project3Ref = useRef(null);
 
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
-  const prefersReducedMotion = useMediaQuery({ query: '(prefers-reduced-motion: reduce)' });
+  const prefersReducedMotion = useMediaQuery({
+    query: '(prefers-reduced-motion: reduce)',
+  });
 
   useGSAP(() => {
     const projects = [
@@ -26,31 +28,33 @@ const ShowcaseSection = memo(() => {
     gsap.set(projects, { y: 50, opacity: 0 });
 
     if (prefersReducedMotion) {
-      gsap.set([sectionRef.current, ...projects], { 
-        opacity: 1, y: 0 
+      gsap.set([sectionRef.current, ...projects], {
+        opacity: 1,
+        y: 0,
       });
       return;
     }
 
     gsap.set([sectionRef.current, ...projects], {
-      willChange: 'transform, opacity'
+      willChange: 'transform, opacity',
     });
 
     gsap.fromTo(
       sectionRef.current,
       { opacity: 0 },
-      { 
-        opacity: 1, 
+      {
+        opacity: 1,
         duration: isMobile ? 0.6 : 1,
         onComplete: () => {
           sectionRef.current.style.willChange = 'auto';
-        }
+        },
       }
     );
 
     ScrollTrigger.batch(projects, {
       onEnter: (elements) => {
-        gsap.fromTo(elements, 
+        gsap.fromTo(
+          elements,
           { y: 50, opacity: 0 },
           {
             y: 0,
@@ -60,23 +64,19 @@ const ShowcaseSection = memo(() => {
             ease: 'power2.out',
             force3D: true,
             onComplete: () => {
-              elements.forEach(el => {
+              elements.forEach((el) => {
                 el.style.willChange = 'auto';
               });
-            }
+            },
           }
         );
       },
       start: 'top bottom-=100',
       once: true,
-      batchMax: 3
+      batchMax: 3,
     });
-
-    return () => {
-      [sectionRef.current, ...projects].forEach(el => {
-        if (el) el.style.willChange = 'auto';
-      });
-    };
+    
+    return () => ScrollTrigger.getAll().forEach((st) => st.kill());
   }, [isMobile, prefersReducedMotion]);
 
   return (

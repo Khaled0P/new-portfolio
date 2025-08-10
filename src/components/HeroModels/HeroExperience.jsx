@@ -24,7 +24,7 @@ const HeroExperience = () => {
             maxPolarAngle={Math.PI / 2}
           />
           <HeroLights />
-          <Particles count={50} />
+          <Particles count={ isMobile? 30 : 50} />
           {/* eslint-disable-next-line react/no-unknown-property */}
           <group scale={isMobile ? 0.7 : 1} position={[0, -3.5 ,0]} rotation={[0, -Math.PI / 4, 0]}>
             <Room />

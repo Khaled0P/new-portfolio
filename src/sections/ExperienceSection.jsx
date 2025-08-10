@@ -15,70 +15,86 @@ const ExperienceSection = () => {
   });
 
   useGSAP(() => {
-    if (prefersReducedMotion) {
-      gsap.set('.timeline-card, .expText', { opacity: 1, xPercent: 0 });
-      gsap.set('.timeline', { scaleY: 0 });
-      return;
-    }
+  if (prefersReducedMotion) {
+    gsap.set('.timeline-card, .expText', { opacity: 1, xPercent: 0 });
+    gsap.set('.timeline', { scaleY: 0 });
+    return;
+  }
 
-    gsap.set('.timeline-card', {
-      xPercent: -100,
-      opacity: 0,
-    });
+  gsap.to('.timeline', {
+    scaleY: 0,
+    willChange: 'transform',
+    transformOrigin: 'bottom center',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.timeline-wrapper',
+      start: 'top 30%',
+      end: isMobile ? 'bottom 70%' : 'bottom 50%',
+      scrub: 1,
+    },
+    onComplete: () => gsap.set('.timeline', { willChange: 'auto' }),
+  });
 
-    gsap.set('.expText', {
-      opacity: 0,
-    });
+  if (isMobile) {
+    // mobile: one simple fade-in for both text & cards
+    gsap.set('.timeline-card, .expText', { opacity: 0 });
 
-    ScrollTrigger.batch('.timeline-card', {
+    ScrollTrigger.batch('.timeline-card, .expText', {
       onEnter: (elements) => {
         gsap.to(elements, {
-          willChange: 'transform, opacity',
-          xPercent: 0,
           opacity: 1,
-          duration: isMobile ? 0.6 : 1,
-          stagger: isMobile ? 0.1 : 0.2,
+          duration: 1,
+          stagger: 0.2,
           ease: 'power2.out',
-          onComplete: () => gsap.set(elements, { willChange: 'auto' }),
         });
       },
-      start: 'top 60%',
+      start: 'top 80%',
       once: true,
-      batchMax: 3,
     });
 
-    gsap.to('.timeline', {
-      scaleY: 0,
-      willChange: 'transform',
-      transformOrigin: 'bottom center',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.timeline-wrapper',
-        start: 'top 30%',
-        end: isMobile ? 'bottom 70%' : 'bottom 50%',
-        scrub: 1,
-      },
-      onComplete: () => gsap.set('.timeline', { willChange: 'auto' }),
-    });
+    return;
+  }
 
-    ScrollTrigger.batch('.expText', {
-      onEnter: (elements) => {
-        gsap.to(elements, {
-          willChange: 'opacity',
-          opacity: 1,
-          duration: isMobile ? 0.6 : 1,
-          ease: 'power2.out',
-          stagger: isMobile ? 0.05 : 0.1,
-          onComplete: () => gsap.set(elements, { willChange: 'auto' }),
-        });
-      },
-      start: 'top 60%',
-      once: true,
-      batchMax: 3,
-    });
+  // desktop: full animations
+  gsap.set('.timeline-card', { xPercent: -100, opacity: 0 });
+  gsap.set('.expText', { opacity: 0 });
 
-    return () => ScrollTrigger.getAll().forEach((st) => st.kill());
-  }, []);
+  ScrollTrigger.batch('.timeline-card', {
+    onEnter: (elements) => {
+      gsap.to(elements, {
+        willChange: 'transform, opacity',
+        xPercent: 0,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.2,
+        ease: 'power2.out',
+        onComplete: () => gsap.set(elements, { willChange: 'auto' }),
+      });
+    },
+    start: 'top 60%',
+    once: true,
+    batchMax: 3,
+  });
+
+  ScrollTrigger.batch('.expText', {
+    onEnter: (elements) => {
+      gsap.to(elements, {
+        willChange: 'opacity',
+        opacity: 1,
+        duration: 1,
+        ease: 'power2.out',
+        stagger: 0.1,
+        onComplete: () => gsap.set(elements, { willChange: 'auto' }),
+      });
+    },
+    start: 'top 60%',
+    once: true,
+    batchMax: 3,
+  });
+
+  return () => ScrollTrigger.getAll().forEach((st) => st.kill());
+}, []);
+
   return (
     <section
       id="experience"

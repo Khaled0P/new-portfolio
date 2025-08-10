@@ -13,10 +13,15 @@ body {
   color: white;
   scroll-behavior: smooth;
   font-family: 'Mona Sans', sans-serif;
+  box-sizing: border-box;
+}
+
+image {
+  max-width: 100%;
 }
 
 section {
-  width: 100dvw;
+  width: 100vw;
 }
 
 @theme {

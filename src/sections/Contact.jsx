@@ -5,6 +5,7 @@ import { toast } from 'sonner';
 const Contact = () => {
   const formRef = useRef(null);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,13 +22,13 @@ const Contact = () => {
         import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
         formRef.current,
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
+        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
       );
 
       setForm({ name: '', email: '', message: '' });
-      toast.success("Email was sent, I'll reply as soon as possible")
+      toast.success("Email was sent, I'll reply as soon as possible");
     } catch (error) {
-      toast.error("There was an error sending your email", error)
+      toast.error('There was an error sending your email', error);
     } finally {
       setLoading(false);
     }
@@ -43,7 +44,11 @@ const Contact = () => {
           {/* CONTACT FORM - LEFT SIDE */}
           <div className="xl:col-span-5">
             <div className="flex-center card-border rounded-xl p-10">
-              <form className="w-full flex flex-col gap-7" onSubmit={handleSubmit} ref={formRef}>
+              <form
+                className="w-full flex flex-col gap-7"
+                onSubmit={handleSubmit}
+                ref={formRef}
+              >
                 <div>
                   <label htmlFor="name" className="text-white-50 font-semibold">
                     Name
@@ -57,13 +62,13 @@ const Contact = () => {
                     value={form.name}
                     onChange={handleChange}
                     required
-                    />
+                  />
                 </div>
                 <div>
                   <label
                     htmlFor="email"
                     className="text-white-50 font-semibold"
-                    >
+                  >
                     Email
                   </label>
                   <input
@@ -75,12 +80,12 @@ const Contact = () => {
                     value={form.email}
                     onChange={handleChange}
                     required
-                    />
+                  />
                 </div>
                 <label
                   htmlFor="message"
                   className="text-white-50 font-semibold"
-                  >
+                >
                   Message
                 </label>
                 <textarea
@@ -103,7 +108,11 @@ const Contact = () => {
                       {loading ? 'Sending...' : 'Send Message'}
                     </p>
                     <div className="arrow-wrapper">
-                      <img src="/images/arrow-right.svg" alt="arrow" className='animate-right' />
+                      <img
+                        src="/images/arrow-right.svg"
+                        alt="arrow"
+                        className="animate-right"
+                      />
                     </div>
                   </div>
                 </button>
@@ -113,7 +122,18 @@ const Contact = () => {
           {/* 3D Experience */}
           <div className="xl:col-span-7 min-h-96">
             <div className="w-full h-full bg-[#cd7c2e] rounded-3xl overflow-hidden">
-              <ContactExperience />
+              {isMobile ? (
+                <img
+                  src="/images/computer.avif"
+                  alt=""
+                  width={700}
+                  height={333}
+                  loading='lazy'
+                  className='relative top-[30%]'
+                />
+              ) : (
+                <ContactExperience />
+              )}
             </div>
           </div>
         </div>
@@ -124,4 +144,5 @@ const Contact = () => {
 
 import ContactExperience from '../components/ContactExperience';
 import { useRef, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 export default Contact;

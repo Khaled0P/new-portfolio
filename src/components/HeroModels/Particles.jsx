@@ -1,15 +1,19 @@
 /* eslint-disable react/no-unknown-property */
 import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
+import { useMediaQuery } from 'react-responsive';
 
 const Particles = ({ count = 50 }) => {
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   const mesh = useRef();
+   const spawnHeight = isMobile ? 4 : 10;
+  const spawnRange = isMobile ? 2 : 5; 
 
   const particles = useMemo(() => {
     const temp = [];
     for (let i = 0; i < count; i++) {
       temp.push({
-        initialY: Math.random() * 10 + 5,
+        initialY: Math.random() * spawnHeight + spawnRange,
         position: [
           (Math.random() - 0.5) * 10,
           0,
@@ -20,7 +24,7 @@ const Particles = ({ count = 50 }) => {
       });
     }
     return temp;
-  }, [count]);
+  }, [count, spawnHeight, spawnRange]);
 
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3);
@@ -45,7 +49,7 @@ const Particles = ({ count = 50 }) => {
     // If particle is below the floor, reset it
     if (arr[i * 3 + 1] < -2) {
       arr[i * 3] = (Math.random() - 0.5) * 10;         // random X
-      arr[i * 3 + 1] = Math.random() * 10 + 5;         // reset Y at top
+      arr[i * 3 + 1] = Math.random() * spawnHeight + spawnRange;         // reset Y at top
       arr[i * 3 + 2] = (Math.random() - 0.5) * 10;     // random Z
       p.speed = 0.3 + Math.random() * 0.1;             // restore normal speed
     }

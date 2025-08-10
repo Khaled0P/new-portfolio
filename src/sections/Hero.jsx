@@ -1,11 +1,22 @@
 import { useGSAP } from '@gsap/react';
-import Button from '../components/Button';
+import Button from '../components/ScrollButton';
 import HeroExperience from '../components/HeroModels/HeroExperience';
 import { words } from '../constants';
 import gsap from 'gsap';
 import AnimatedCounter from '../components/AnimatedCounter';
+import { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 const Hero = () => {
+  const [enableControls, setEnableControls] = useState(true);
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+
+  useEffect(() => {
+  if (!isMobile) {
+    setEnableControls(true);
+  }
+}, [isMobile]);
+
   useGSAP(() => {
     gsap.fromTo(
       '.hero-text h1',
@@ -72,12 +83,20 @@ const Hero = () => {
               id="button"
               text="see my work"
             />
+            {isMobile && (
+              <button
+                className="border-1 text-sm border-[var(--color-white-50)] rounded-full md:w-80 md:h-16 w-35 h-8 relative z-20 cursor-pointer"
+                onClick={() => setEnableControls((prev) => !prev)}
+              >
+                {enableControls ? 'Disable Controls' : 'Enable Controls'}
+              </button>
+            )}
           </div>
         </header>
         {/* Right: 3D model */}
         <figure>
-          <div className="hero-3d-layout">
-            <HeroExperience />
+          <div className="hero-3d-layout group group-hover:visible">
+            <HeroExperience enableControls={enableControls}  />
           </div>
         </figure>
       </div>

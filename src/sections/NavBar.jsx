@@ -33,9 +33,9 @@ const NavBar = () => {
           </ul>
         </nav>
 
-        <a href="#contact" className="contact-btn group">
+        <a href="#contact" className="contact-btn group min-w-[min-content]">
           <div className="inner">
-            <span>Contact me</span>
+            <span className='text-nowrap'>Contact me</span>
           </div>
         </a>
       </div>

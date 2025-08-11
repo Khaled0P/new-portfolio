@@ -163,7 +163,7 @@ const ShowcaseSection = memo(() => {
           className="cta-button md:w-80 md:h-16 w-60 h-12 mx-auto mt-5 md:mt-10 bg-white-50 hover:opacity-90"
           onClick={() => setOpenAll(true)}
         >
-          <p className='text'>View More</p>
+          <p className='text translate-0'>View More</p>
         </button>
       </div>
       {openAll && (

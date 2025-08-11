@@ -4,7 +4,6 @@ import { fullProjects } from '../constants';
 import { useCardMouseMove } from '../hooks/useCardMouseMove';
 import TitleHeader from './TitleHeader';
 
-
 const ProjectGalleryModal = ({ open, onClose }) => {
   const rootRef = useRef(null);
   const closeBtnRef = useRef(null);
@@ -33,7 +32,14 @@ const ProjectGalleryModal = ({ open, onClose }) => {
     document.body.style.overflow = 'hidden';
     const prevHtmlOverflow = document.documentElement.style.overflow;
     document.documentElement.style.overflow = 'hidden';
-    const preventTouchScroll = (e) => e.preventDefault();
+    const preventTouchScroll = (e) => {
+      if (!rootRef.current?.contains(e.target)) {
+        e.preventDefault();
+      }
+    };
+    window.addEventListener('touchmove', preventTouchScroll, {
+      passive: false,
+    });
     window.addEventListener('touchmove', preventTouchScroll, {
       passive: false,
     });
@@ -73,7 +79,10 @@ const ProjectGalleryModal = ({ open, onClose }) => {
         {/* Header */}
         <div className="p-5 flex items-center justify-between shrink-0">
           <div className="grow-1">
-            <TitleHeader title="Projects" sub="🛠️ Some of my professional and personal projects"/>
+            <TitleHeader
+              title="Projects"
+              sub="🛠️ Some of my professional and personal projects"
+            />
           </div>
           <button
             ref={closeBtnRef}

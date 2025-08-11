@@ -27,24 +27,17 @@ const TechStack = memo(() => {
       return;
     }
 
-    gsap.set('.tech-card', {
-      force3D: true,
-      willChange: 'transform, opacity',
-    });
-
     gsap.fromTo(
       '.tech-card',
-      { y: 50, opacity: 0 },
+      { y: 50, opacity: 0, willChange: 'transform, opacity' },
       {
         y: 0,
         opacity: 1,
         duration: 1,
         ease: 'power2.inOut',
         stagger: 0.2,
-        scrollTrigger: {
-          trigger: '#skills',
-          start: 'top center',
-        },
+        onComplete: () => gsap.set('.tech-card', { willChange: 'auto' }),
+        scrollTrigger: { trigger: '#skills', start: 'top center' },
       }
     );
 

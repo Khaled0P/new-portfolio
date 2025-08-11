@@ -1,35 +1,10 @@
-import { useRef, useCallback, memo } from 'react';
+import { useRef, memo } from 'react';
+import { useCardMouseMove } from '../hooks/useCardMouseMove';
 
 const GlowCard = memo(({ card, children, index }) => {
   const cardRefs = useRef([]);
+  const handleMouseMove = useCardMouseMove(cardRefs);
 
-  const handleMouseMove = useCallback((index) => {
-    let rafId = null;
-    
-    return (e) => {
-      if (rafId) return;
-      
-      rafId = requestAnimationFrame(() => {
-        const card = cardRefs.current[index];
-        if (!card) {
-          rafId = null;
-          return;
-        }
-
-        // get the mouse position relative to the card
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-
-        // calculate the rotation based on mouse position
-        let angle = Math.atan2(y, x) * (180 / Math.PI);
-        angle = (angle + 360) % 360; // normalize angle to [0, 360)
-        card.style.setProperty('--start', angle + 60);
-        
-        rafId = null;
-      });
-    };
-  }, []);
   return (
     <div
       ref={(el) => (cardRefs.current[index] = el)}

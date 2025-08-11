@@ -28,6 +28,7 @@ const HeroExperience = ({ enableControls }) => {
         style={{
           touchAction: enableControls ? 'none' : 'auto', // important for mobile scroll
         }}
+        gl={{ antialias: !isMobile, powerPreference: 'low-power' }}
       >
         <PauseCanvasWhenOffscreen inView={inView} />
         <OrbitControls

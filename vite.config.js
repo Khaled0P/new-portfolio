@@ -11,16 +11,26 @@ export default defineConfig({
     target: 'esnext',
     minify: 'esbuild',
     chunkSizeWarningLimit: 1500,
+    modulePreload: { polyfill: false },
     manualChunks(id) {
       if (id.includes('node_modules')) {
-        if (id.includes('three')) return 'three';
-        if (id.includes('@react-three/drei')) return 'drei';
-        if (id.includes('postprocessing')) return 'postprocessing';
+        if (
+          id.includes('three') ||
+          id.includes('@react-three/fiber') ||
+          id.includes('@react-three/drei')
+        ) return 'three-bundle';
 
-        const parts = id.split('node_modules/')[1].split('/');
-        return parts[0].startsWith('@') ? `${parts[0]}/${parts[1]}` : parts[0];
+        if (
+          id.includes('postprocessing') ||
+          id.includes('@react-three/postprocessing')
+        ) return 'postprocessing-bundle';
+
+        if (id.includes('gsap')) return 'gsap-bundle';
+
+        return 'vendor';
       }
     },
   },
 });
+
 

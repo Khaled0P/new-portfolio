@@ -1,15 +1,19 @@
 /* eslint-disable react/no-unknown-property */
-import React, { useRef, useMemo } from "react";
+import { useRef, useMemo, useEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 // import { EffectComposer, SelectiveBloom } from "@react-three/postprocessing";
 // import { BlendFunction } from "postprocessing";
 import * as THREE from "three";
-import { useMediaQuery } from "react-responsive";
 import { EffectComposer, SelectiveBloom } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 
 export function Room(props) {
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const isMobile = props.isMobile;
+
+  useEffect(() => {
+    console.log("Room mounted");
+    return () => console.log("Room unmounted");
+  }, []);
 
   const { nodes, materials } = useGLTF("/models/optimized-room.glb");
   if (isMobile) {

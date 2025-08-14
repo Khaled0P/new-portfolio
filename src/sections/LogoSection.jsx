@@ -4,7 +4,7 @@ import Marquee from 'react-fast-marquee';
 const LogoIcon = ({ icon }) => {
   return (
     <div className="flex-none flex-center md:mx-6 mx-2 md:w-40 w-32">
-      <img src={icon.imgPath} alt={icon.name} />
+      <img src={icon.imgPath} alt={icon.name} loading='lazy' width={210} height={60}/>
     </div>
   );
 };

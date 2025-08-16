@@ -10,7 +10,7 @@ const navLinks = [
   {
     name: 'Skills',
     link: '#skills',
-  }
+  },
 ];
 
 const words = [
@@ -102,20 +102,20 @@ const techStackIcons = [
 
 const techStackImgs = [
   {
-    name: "React / Next Developer",
-    imgPath: "/images/logos/react.webp",
+    name: 'React / Next Developer',
+    imgPath: '/images/logos/react.webp',
   },
   {
-    name: "Shopify Developer",
-    imgPath: "/images/logos/shopify.webp",
+    name: 'Shopify Developer',
+    imgPath: '/images/logos/shopify.webp',
   },
   {
-    name: "JavaScript Developer",
-    imgPath: "/images/logos/node.webp",
+    name: 'JavaScript Developer',
+    imgPath: '/images/logos/node.webp',
   },
   {
-    name: "Workflow Management",
-    imgPath: "/images/logos/git.webp",
+    name: 'Workflow Management',
+    imgPath: '/images/logos/git.webp',
   },
 ];
 
@@ -195,40 +195,73 @@ const fullProjects = [
     name: 'Hola Mexico E-commerce',
     preview: '/Projects-screenshots/hola-mexico.png',
     description: `Solely responsible for building the entire store. Developed a fully custom Shopify theme based on Dawn, focusing on performance and modular design. Handled front-end and Liquid development, custom sections, and integrated third-party apps and libraries.`,
-    tech: "Shopify Liquid, JavaScript (ES6), TailwindCSS, Swiper.js",
+    tech: 'Shopify Liquid, JavaScript (ES6), TailwindCSS, Swiper.js',
     github: 'private',
-    live:'https://holamexico.de/'
+    live: 'https://holamexico.de/',
   },
   {
     name: 'Vitori Sales-stream',
     preview: '/Projects-screenshots/vitori.png',
     description: `Built full-stack features from API development to front-end implementation using Next.js and React. Integrated AWS services like S3 for efficient media handling and improved performance.`,
-    tech: "Next.js, React, ReactQuery, Node.js, MaterialUI, AWS S3, REST APIs",
+    tech: 'Next.js, React, ReactQuery, Node.js, MaterialUI, AWS S3, REST APIs',
     github: 'private',
-    live:'https://vitori.de/'
+    live: 'https://vitori.de/',
+  },
+  {
+    name: 'Bettina (Cosmetics & Body Care)',
+    preview: '/Projects-screenshots/bettina-barty.png',
+    description: `Built and customized Shopify sections to showcase premium cosmetic products with a consistent brand identity. Focused on responsive layouts, smooth transitions, and fast-loading product pages to deliver a polished shopping experience.`,
+    tech: 'Shopify Liquid, JavaScript (ES6), TailwindCSS',
+    github: 'private',
+    live: 'https://bettina-barty.de/',
+  },
+  {
+    name: 'ASMC (Army Shop)',
+    preview: '/Projects-screenshots/asmc.png',
+    description: `Contributed to the development of one of Europe’s largest military and outdoor gear stores on Shopify. Implemented scalable product filtering and navigation features to handle thousands of SKUs, improving customer search efficiency and overall site performance.`,
+    tech: 'Shopify Liquid, JavaScript (ES6), TailwindCSS',
+    github: 'private',
+    live: 'https://www.asmc.de/',
+  },
+  {
+    name: 'Marbert (Heritage Skincare Brand)',
+    preview: '/Projects-screenshots/marbert.png',
+    description: `Modernized Shopify theme components for Marbert’s heritage skincare brand. Delivered reusable promotional sections and campaign layouts that allowed the marketing team to launch seasonal campaigns faster without developer bottlenecks.`,
+    tech: 'Shopify Liquid, JavaScript (ES6), SCSS',
+    github: 'private',
+    live: 'https://www.marbert.de/',
+  },
+  {
+    name: 'Histaminikus (Health & Nutrition Products)',
+    preview: '/Projects-screenshots/histaminikus.png',
+    description: `Optimized Shopify store performance and SEO for a health-focused retailer. Developed user-friendly product pages and accessible components that improved site speed, discoverability, and trustworthiness for a health-conscious audience.`,
+    tech: 'Shopify Liquid, JavaScript (ES6), TailwindCSS',
+    github: 'private',
+    live: 'https://www.histaminikus.de/',
   },
   {
     name: 'Peak Performance E-commerce',
     preview: '/Projects-screenshots/peak.png',
-    description: 'Fully refactored an existing Shopify store to significantly improve scalability, code readability, and performance. Restructured the theme architecture, modularized components, and optimized Liquid templates and JavaScript logic.',
-    tech: "Shopify Liquid, JavaScript (ES6), SCSS, Swiper.js",
+    description:
+      'Fully refactored an existing Shopify store to significantly improve scalability, code readability, and performance. Restructured the theme architecture, modularized components, and optimized Liquid templates and JavaScript logic.',
+    tech: 'Shopify Liquid, JavaScript (ES6), SCSS, Swiper.js',
     github: 'private',
-    live:'https://www.peak.ag/en/'
+    live: 'https://www.peak.ag/en/',
   },
   {
     name: 'Atera E-commerce',
     preview: '/Projects-screenshots/Atera.png',
     description: `Contributed to various improvements across the store including leading the development of a custom multi-tab search feature for car parts, allowing users to filter by manufacturer, model, and make. Also improved overall site performance and SEO through front-end optimizations and best practices.`,
-    tech: "Shopify Liquid, JavaScript (ES6), TailwindCSS",
+    tech: 'Shopify Liquid, JavaScript (ES6), TailwindCSS',
     github: 'private',
-    live:'https://www.atera.de/'
+    live: 'https://www.atera.de/',
   },
   {
     name: 'BMWelektronika',
     preview: '/Projects-screenshots/BMW.png',
     description: `Spearheaded the development of the official website for BMWelektronika private business. Collaborated closely with a designer to translate creative concepts into pixel-perfect, high-performance 
     code. Designed and implemented a loading screen, seamlessly integrating fully animated elements into the website`,
-    tech:'ReactJS, BootStrap, Framer motion, CSS Modules, React scroll',
+    tech: 'ReactJS, BootStrap, Framer motion, CSS Modules, React scroll',
     github: 'https://github.com/adoringdo/BMWelektronika.git',
     live: 'https://bmwelektronika.tech',
   },
@@ -274,7 +307,6 @@ const fullProjects = [
     live: 'https://khaled0p.github.io/To-Do-List/',
   },
 ];
-
 
 export {
   words,

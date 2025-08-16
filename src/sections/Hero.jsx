@@ -12,10 +12,10 @@ const Hero = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   useEffect(() => {
-  if (!isMobile) {
-    setEnableControls(true);
-  }
-}, [isMobile]);
+    if (!isMobile) {
+      setEnableControls(true);
+    }
+  }, [isMobile]);
 
   useGSAP(() => {
     gsap.fromTo(
@@ -42,7 +42,9 @@ const Hero = () => {
           alt="Background"
           width={420}
           height={330}
-          srcSet="/images/bg.png 480w, /images/bg.png 768w, /images/bg.png 1200w"
+          srcSet="/images/bg-480.png 480w, /images/bg-768.png 768w, /images/bg.png 1200w"
+          fetchPriority="high"
+          decoding="async"
         />
       </div>
 
@@ -96,7 +98,7 @@ const Hero = () => {
         {/* Right: 3D model */}
         <figure>
           <div className="hero-3d-layout group group-hover:visible">
-            <HeroExperience enableControls={enableControls}  />
+            <HeroExperience enableControls={enableControls} />
           </div>
         </figure>
       </div>

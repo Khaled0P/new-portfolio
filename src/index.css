@@ -1,5 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap');
 @import 'tailwindcss';
+
+@font-face {
+  font-family: 'Mona Sans';
+  src: url('/fonts/MonaSansVF.woff2') format('woff2-variations');
+  font-weight: 400 700;
+  font-display: swap;
+  font-style: normal;
+}
 
 :root {
   --gradient: radial-gradient(circle, #e5e5e5 0%, #fff 100%);
